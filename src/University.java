@@ -1,8 +1,10 @@
-public class University {
+import java.util.Comparator;
+
+public class University implements Comparable {
     private Integer rank;
     private String name;
     private String location;
-    private String numberOfStudents;
+    private Integer numberOfStudents;
     private Double ratioOfStudentToStaff;
     private String internationalStudent;
     private String maleToFemaleRatio;
@@ -14,7 +16,7 @@ public class University {
     private Double internationalOutlookScore;
 
     public University(){};
-    public University(Integer rank, String name, String location, String numberOfStudents, Double ratioOfStudentToStaff, String internationalStudent, String maleToFemaleRatio, String overAllScore, String teachingScore, Double researchScore, Double citationScore, Double industryIncomeScore, Double internationalOutlookScore) {
+    public University(Integer rank, String name, String location, Integer numberOfStudents, Double ratioOfStudentToStaff, String internationalStudent, String maleToFemaleRatio, String overAllScore, String teachingScore, Double researchScore, Double citationScore, Double industryIncomeScore, Double internationalOutlookScore) {
         this.rank = rank;
         this.name = name;
         this.location = location;
@@ -46,7 +48,7 @@ public class University {
         this.location = location;
     }
 
-    public void setNumberOfStudents(String numberOfStudents) {
+    public void setNumberOfStudents(Integer numberOfStudents) {
         this.numberOfStudents = numberOfStudents;
     }
 
@@ -85,4 +87,62 @@ public class University {
     public void setInternationalOutlookScore(Double internationalOutlookScore) {
         this.internationalOutlookScore = internationalOutlookScore;
     }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
+    }
+
+    public Integer getRank() {
+        return rank;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public Integer getNumberOfStudents() {
+        return numberOfStudents;
+    }
+
+    public Double getRatioOfStudentToStaff() {
+        return ratioOfStudentToStaff;
+    }
+
+    public String getInternationalStudent() {
+        return internationalStudent;
+    }
+
+    public String getMaleToFemaleRatio() {
+        return maleToFemaleRatio;
+    }
+
+    public String getOverAllScore() {
+        return overAllScore;
+    }
+
+    public String getTeachingScore() {
+        return teachingScore;
+    }
+
+    public Double getResearchScore() {
+        return researchScore;
+    }
+
+    public Double getCitationScore() {
+        return citationScore;
+    }
+
+    public Double getIndustryIncomeScore() {
+        return industryIncomeScore;
+    }
+
+    public Double getInternationalOutlookScore() {
+        return internationalOutlookScore;
+    }
+
 }

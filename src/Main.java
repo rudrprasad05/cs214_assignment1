@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -9,14 +11,14 @@ public class Main {
         ArrayList<University> universityArrayList = new ArrayList<>();
 
         ReadFile(universityArrayList);
+        SortMethods.insertionSort(universityArrayList, UniversityComparators.byNumberOfStudentsDsc());
+        printToScreen(universityArrayList);
 
-        for(University u: universityArrayList){
-            System.out.println(u.toString());
-        }
+
     }
 
     public static void ReadFile(ArrayList<University> universityArrayList){
-        String filePath = "src/World University Rankings 2023-Cleaned.csv";  // Replace with the path to your file
+        String filePath = "src/World University Rankings 2023-Cleaned.csv";
 
         try (Scanner scanner = new Scanner(new File(filePath))) {
             if (scanner.hasNextLine()) {
@@ -24,13 +26,13 @@ public class Main {
             }
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-//                String[] parts = line.split(",", -1);
-                String[] parts = parseLine(line);
+                Pattern pattern = Pattern.compile(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                String[] parts = pattern.split(line);
 
                 Integer rank = Integer.parseInt(parts[0]);
-                String name = parts[1];
-                String location = parts[2];
-                String numberOfStudents = parts[3].replace("\"", "");;
+                String name = parts[1].replace("\"", "");
+                String location = parts[2].replace("\"", "");
+                Integer numberOfStudents = parseInt(parts[3].replace("\"", "").replace(",", ""));
                 Double ratioOfStudentToStaff = parseDouble(parts[4]);
                 String internationalStudent = parts[5];
                 String maleToFemaleRatio = parts[6];
@@ -49,11 +51,25 @@ public class Main {
         }
     }
 
-    private static String[] parseLine(String line) {
-        // This pattern will match fields within quotes or fields separated by commas
-        Pattern pattern = Pattern.compile(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-        return pattern.split(line);
+    private static void printToScreen(List<University> universities){
+        universities.forEach(university -> System.out.printf(
+                "%-5d %-60s %-20s %-8s %-4f %-4s %-10s %-6.2s %-6.2s %-6.2f %-6.2f %-6.2f %-6.2f%n",
+                university.getRank(),
+                university.getName(),
+                university.getLocation(),
+                university.getNumberOfStudents(),
+                university.getRatioOfStudentToStaff(),
+                university.getInternationalStudent(),
+                university.getMaleToFemaleRatio(),
+                university.getOverAllScore(),
+                university.getTeachingScore(),
+                university.getResearchScore(),
+                university.getCitationScore(),
+                university.getIndustryIncomeScore(),
+                university.getInternationalOutlookScore()
+        ));
     }
+
 
     private static Double parseDouble(String str) {
         if (str.isEmpty()) {
@@ -66,6 +82,20 @@ public class Main {
             System.out.println(e);
 
         }
-        return (double) 0;
+        return 0.0;
+    }
+
+    private static Integer parseInt(String str) {
+        if (str.isEmpty()) {
+            return null;
+        }
+        try{
+            return Integer.parseInt(str);
+        }
+        catch (NumberFormatException e){
+            System.out.println(e);
+
+        }
+        return 0;
     }
 }
