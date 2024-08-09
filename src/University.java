@@ -87,12 +87,6 @@ public class University implements Comparable {
     public void setInternationalOutlookScore(Double internationalOutlookScore) {
         this.internationalOutlookScore = internationalOutlookScore;
     }
-
-    @Override
-    public int compareTo(Object o) {
-        return 0;
-    }
-
     public Integer getRank() {
         return rank;
     }
@@ -144,5 +138,11 @@ public class University implements Comparable {
     public Double getInternationalOutlookScore() {
         return internationalOutlookScore;
     }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
+    }
+
 
 }
