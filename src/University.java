@@ -94,7 +94,6 @@ public class University implements Comparable<University> {
     public int compareTo(University o) {
         return 0;
     }
-
     public static Comparator<University> getRankComparator() {
         return new Comparator<University>() {
             @Override
