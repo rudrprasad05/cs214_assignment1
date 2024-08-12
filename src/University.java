@@ -1,6 +1,7 @@
 import java.util.Comparator;
+import java.util.Objects;
 
-public class University implements Comparable {
+public class University implements Comparable<University> {
     private Integer rank;
     private String name;
     private String location;
@@ -15,7 +16,7 @@ public class University implements Comparable {
     private Double industryIncomeScore;
     private Double internationalOutlookScore;
 
-    public University(){};
+    public University(){}
     public University(Integer rank, String name, String location, Integer numberOfStudents, Double ratioOfStudentToStaff, String internationalStudent, String maleToFemaleRatio, String overAllScore, String teachingScore, Double researchScore, Double citationScore, Double industryIncomeScore, Double internationalOutlookScore) {
         this.rank = rank;
         this.name = name;
@@ -36,57 +37,7 @@ public class University implements Comparable {
     public String toString(){
         return rank + " " + name+ " " + location+ " " + numberOfStudents+ " " + ratioOfStudentToStaff+ " " + internationalStudent+ " " + maleToFemaleRatio + " "+ overAllScore + " "+ teachingScore + " "+ researchScore + " "+ citationScore+ " " + industryIncomeScore + " "+ internationalOutlookScore;
     }
-    public void setRank(Integer rank) {
-        this.rank = rank;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public void setNumberOfStudents(Integer numberOfStudents) {
-        this.numberOfStudents = numberOfStudents;
-    }
-
-    public void setRatioOfStudentToStaff(Double ratioOfStudentToStaff) {
-        this.ratioOfStudentToStaff = ratioOfStudentToStaff;
-    }
-
-    public void setInternationalStudent(String internationalStudent) {
-        this.internationalStudent = internationalStudent;
-    }
-
-    public void setMaleToFemaleRatio(String maleToFemaleRatio) {
-        this.maleToFemaleRatio = maleToFemaleRatio;
-    }
-
-    public void setOverAllScore(String overAllScore) {
-        this.overAllScore = overAllScore;
-    }
-
-    public void setTeachingScore(String teachingScore) {
-        this.teachingScore = teachingScore;
-    }
-
-    public void setResearchScore(Double researchScore) {
-        this.researchScore = researchScore;
-    }
-
-    public void setCitationScore(Double citationScore) {
-        this.citationScore = citationScore;
-    }
-
-    public void setIndustryIncomeScore(Double industryIncomeScore) {
-        this.industryIncomeScore = industryIncomeScore;
-    }
-
-    public void setInternationalOutlookScore(Double internationalOutlookScore) {
-        this.internationalOutlookScore = internationalOutlookScore;
-    }
     public Integer getRank() {
         return rank;
     }
@@ -140,9 +91,25 @@ public class University implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
+    public int compareTo(University o) {
         return 0;
     }
+
+    public static Comparator<University> getRankComparator() {
+        return new Comparator<University>() {
+            @Override
+            public int compare(University u1, University u2) {
+                if (Objects.equals(u1.getRank(), u2.getRank())) {
+                    return 0;
+                } else if (u1.getRank() > u2.getRank()) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            }
+        };
+    }
+
 
 
 }

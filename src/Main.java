@@ -15,20 +15,11 @@ public class Main {
 
         // apply sorting methods, using any comparator
         // comparators come from UniversityComparators class and allows user to sort by any field.
-        SortMethods.mergeSort(universityArrayList, UniversityComparators.byLocation());
-        SortMethods.mergeSort(universityLinkedList, UniversityComparators.byLocation());
-
-        SortMethods.insertionSort(universityArrayList, UniversityComparators.byRank());
-        SortMethods.insertionSort(universityLinkedList, UniversityComparators.byRank());
-
-        SortMethods.bubbleSort(universityArrayList, UniversityComparators.byInternationalOutlookScore());
-        SortMethods.bubbleSort(universityLinkedList, UniversityComparators.byInternationalOutlookScore());
-
-        SortMethods.builtInSort(universityArrayList, UniversityComparators.byInternationalOutlookScore());
-        SortMethods.builtInSort(universityLinkedList, UniversityComparators.byInternationalOutlookScore());
+//        SortMethods.mergeSort(universityArrayList, University.getRankComparator());
+        SortMethods.mergeSort(universityArrayList, University.getRankComparator().reversed());
 
         // print formatted output onto screen
-        printToScreen(universityLinkedList);
+        printToScreen(universityArrayList);
 
 
     }
