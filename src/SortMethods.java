@@ -40,7 +40,6 @@ public class SortMethods {
         mergeSort(left, comparator);
         mergeSort(right, comparator);
 
-//        merge(list, left, right, comparator);
         int i = 0, j = 0, k = 0;
         while (i < left.size() && j < right.size()) {
             if (comparator.compare(left.get(i), right.get(j)) <= 0) {
@@ -56,23 +55,6 @@ public class SortMethods {
             list.set(k++, right.get(j++));
         }
 
-    }
-
-    private static <T> void merge(List<T> list, List<T> left, List<T> right, Comparator<T> comparator) {
-        int i = 0, j = 0, k = 0;
-        while (i < left.size() && j < right.size()) {
-            if (comparator.compare(left.get(i), right.get(j)) <= 0) {
-                list.set(k++, left.get(i++));
-            } else {
-                list.set(k++, right.get(j++));
-            }
-        }
-        while (i < left.size()) {
-            list.set(k++, left.get(i++));
-        }
-        while (j < right.size()) {
-            list.set(k++, right.get(j++));
-        }
     }
 
     public static <T> void builtInSort(List<T> list, Comparator<T> comparator){

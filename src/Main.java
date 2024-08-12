@@ -21,7 +21,6 @@ public class Main {
         // print formatted output onto screen
         printToScreen(universityArrayList);
 
-
     }
 
     // use of polymorphism allows ReadFile to accept both ArrayList and LinkedList
